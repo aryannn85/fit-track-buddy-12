@@ -14,7 +14,195 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      daily_summaries: {
+        Row: {
+          created_at: string
+          id: string
+          summary_date: string
+          total_calories_burned: number | null
+          total_calories_consumed: number | null
+          total_carbs_g: number | null
+          total_fat_g: number | null
+          total_protein_g: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          summary_date?: string
+          total_calories_burned?: number | null
+          total_calories_consumed?: number | null
+          total_carbs_g?: number | null
+          total_fat_g?: number | null
+          total_protein_g?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          summary_date?: string
+          total_calories_burned?: number | null
+          total_calories_consumed?: number | null
+          total_carbs_g?: number | null
+          total_fat_g?: number | null
+          total_protein_g?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      meals: {
+        Row: {
+          calories: number
+          carbs_g: number | null
+          created_at: string
+          fat_g: number | null
+          id: string
+          meal_time: string
+          meal_type: string | null
+          name: string
+          protein_g: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          calories?: number
+          carbs_g?: number | null
+          created_at?: string
+          fat_g?: number | null
+          id?: string
+          meal_time?: string
+          meal_type?: string | null
+          name: string
+          protein_g?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          calories?: number
+          carbs_g?: number | null
+          created_at?: string
+          fat_g?: number | null
+          id?: string
+          meal_time?: string
+          meal_type?: string | null
+          name?: string
+          protein_g?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          activity_level: Database["public"]["Enums"]["activity_level"] | null
+          age: number | null
+          created_at: string
+          daily_calorie_goal: number | null
+          display_name: string | null
+          fitness_goal: Database["public"]["Enums"]["fitness_goal"] | null
+          gender: Database["public"]["Enums"]["gender"] | null
+          height_cm: number | null
+          id: string
+          updated_at: string
+          user_id: string
+          weight_kg: number | null
+        }
+        Insert: {
+          activity_level?: Database["public"]["Enums"]["activity_level"] | null
+          age?: number | null
+          created_at?: string
+          daily_calorie_goal?: number | null
+          display_name?: string | null
+          fitness_goal?: Database["public"]["Enums"]["fitness_goal"] | null
+          gender?: Database["public"]["Enums"]["gender"] | null
+          height_cm?: number | null
+          id?: string
+          updated_at?: string
+          user_id: string
+          weight_kg?: number | null
+        }
+        Update: {
+          activity_level?: Database["public"]["Enums"]["activity_level"] | null
+          age?: number | null
+          created_at?: string
+          daily_calorie_goal?: number | null
+          display_name?: string | null
+          fitness_goal?: Database["public"]["Enums"]["fitness_goal"] | null
+          gender?: Database["public"]["Enums"]["gender"] | null
+          height_cm?: number | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+          weight_kg?: number | null
+        }
+        Relationships: []
+      }
+      weight_logs: {
+        Row: {
+          created_at: string
+          id: string
+          log_date: string
+          user_id: string
+          weight_kg: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          log_date?: string
+          user_id: string
+          weight_kg: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          log_date?: string
+          user_id?: string
+          weight_kg?: number
+        }
+        Relationships: []
+      }
+      workouts: {
+        Row: {
+          calories_burned: number
+          created_at: string
+          duration_minutes: number
+          id: string
+          name: string
+          notes: string | null
+          updated_at: string
+          user_id: string
+          workout_date: string
+          workout_type: string | null
+        }
+        Insert: {
+          calories_burned?: number
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          name: string
+          notes?: string | null
+          updated_at?: string
+          user_id: string
+          workout_date?: string
+          workout_type?: string | null
+        }
+        Update: {
+          calories_burned?: number
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          name?: string
+          notes?: string | null
+          updated_at?: string
+          user_id?: string
+          workout_date?: string
+          workout_type?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +211,14 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      activity_level:
+        | "sedentary"
+        | "lightly_active"
+        | "moderately_active"
+        | "very_active"
+        | "extremely_active"
+      fitness_goal: "lose_weight" | "maintain_weight" | "gain_weight"
+      gender: "male" | "female" | "other"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +345,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      activity_level: [
+        "sedentary",
+        "lightly_active",
+        "moderately_active",
+        "very_active",
+        "extremely_active",
+      ],
+      fitness_goal: ["lose_weight", "maintain_weight", "gain_weight"],
+      gender: ["male", "female", "other"],
+    },
   },
 } as const
